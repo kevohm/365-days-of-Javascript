@@ -130,3 +130,98 @@ parseInt("101", 2); // 5
  * RegExp literals
  * String literals
  */
+
+const coffees = ["French Roast", "Colombian", "Kona"];
+const fish = ["Lion", , "Angel"];
+console.log(fish);
+// [ 'Lion', <1 empty item>, 'Angel' ]
+
+/**
+ * 
+ * A decimal integer literal is a sequence of digits without a leading 0 (zero).
+ * 
+ * A leading 0 (zero) on an integer literal, or a leading 0o (or 0O) indicates it is in octal. Octal integer literals can include only the digits
+ * 0 – 7.
+ * 
+ * A leading 0x (or 0X) indicates a hexadecimal integer literal. Hexadecimal integers can include digits (0 – 9) and the letters a – f and A – F.
+ * (The case of a character does not change its value. Therefore: 0xa = 0xA = 10 and 0xf = 0xF = 15.)
+ * 
+ * A leading 0b (or 0B) indicates a binary integer literal. Binary integer literals can only include the digits 0 and 1.
+ * 
+ * A trailing n suffix on an integer literal indicates a BigInt literal. The BigInt literal can use any of the above bases. Note that leading-zero
+ * octal syntax like 0123n is not allowed, but 0o123n is fine.
+ * 
+ * In Object literals, Property names that are not valid identifiers cannot be accessed as a dot (.) property.
+ * @example
+ * console.log(unusualPropertyNames[""]); // An empty string
+ * console.log(unusualPropertyNames["!"]); // Bang!
+ * 
+ */
+
+/**
+ * Regex 
+ * 
+ */
+
+const re = /ab+c/;
+
+// string literals
+
+"foo";
+"bar";
+"1234";
+"one line \n another line";
+"Joyo's cat";
+
+// Template literals provide syntactic sugar for constructing strings.
+`In JavaScript '\n' is a line-feed.`;
+//Tagged templates are a compact syntax for specifying a template literal along with a call to a "tag" function for parsing it.
+
+const formatArg = (arg) => {
+  if (Array.isArray(arg)) {
+    // Print a bulleted list
+    return arg.map((part) => `- ${part}`).join("\n");
+  }
+  if (arg.toString === Object.prototype.toString) {
+    // This object will be serialized to "[object Object]".
+    // Let's print something nicer.
+    return JSON.stringify(arg);
+  }
+  return arg;
+};
+
+const print = (segments, ...args) => {
+  // For any well-formed template literal, there will always be N args and
+  // (N+1) string segments.
+  let message = segments[0];
+  segments.slice(1).forEach((segment, index) => {
+    message += formatArg(args[index]) + segment;
+  });
+  console.log(message);
+};
+
+const todos = [
+  "Learn JavaScript",
+  "Learn Web APIs",
+  "Set up my website",
+  "Profit!",
+];
+
+const progress = { javascript: 20, html: 50, css: 10 };
+
+print`I need to do:
+${todos}
+My current progress is: ${progress}
+`;
+
+// I need to do:
+// - Learn JavaScript
+// - Learn Web APIs
+// - Set up my website
+// - Profit!
+// My current progress is: {"javascript":20,"html":50,"css":10}
+
+"one line \n another line";
+
+const quote = 'He read "The Cremation of Sam McGee" by R.W. Service.';
+console.log(quote);
