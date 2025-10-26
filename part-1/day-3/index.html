@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Variables</title>
+  </head>
+  <body>
+    <button id="button_A">Press me</button>
+    <h3 id="heading_A"></h3>
+    <h3 id="max_number"></h3>
+    <script>
+      const buttonA = document.querySelector("#button_A");
+      const headingA = document.querySelector("#heading_A");
+      const maxValueSection = document.getElementById("max_number");
+
+      let count = 1;
+      
+      buttonA.onclick = () => {
+          const maxVal = Math.floor(Math.random() * 100);
+          maxValueSection.innerHTML = maxVal;
+          headingA.textContent = `Press me`;
+        if (count <= maxVal) {
+          headingA.textContent = `${count} clicks so far`;
+        } else {
+          buttonA.textContent = "Try again!";
+          count = 0;
+        }
+        count += 1;
+      };
+    </script>
+  </body>
+</html>
